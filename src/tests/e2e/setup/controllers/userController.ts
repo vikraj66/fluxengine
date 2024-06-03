@@ -1,10 +1,12 @@
 import * as http from 'http';
 import { Controller, Route } from '@/core/controller';
+import { AuthMiddleware } from '../middleware/authMiddleware';
 
 @Controller('/users')
 export class UserController {
-    @Route('get', '/')
+    @Route('get', '/', undefined, [AuthMiddleware])
     getAllUsers(req: http.IncomingMessage, res: http.ServerResponse) {
+        console.log("get hit at req")
         res.statusCode = 200;
         res.end(JSON.stringify([{ id: 1, name: 'John Doe' }]));
     }

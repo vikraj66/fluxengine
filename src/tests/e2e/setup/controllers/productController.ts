@@ -5,6 +5,7 @@ import { Controller, Route } from '@/core/controller';
 export class ProductController {
     @Route('get', '/')
     getAllProducts(req: http.IncomingMessage, res: http.ServerResponse) {
+        console.log("got hit at", req.url)
         res.statusCode = 200;
         res.end(JSON.stringify([{ id: 1, name: 'Laptop' }]));
     }
