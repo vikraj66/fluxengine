@@ -1,7 +1,7 @@
-import { ErrorHandler } from '../core/errorHandler';
+import { ErrorHandler } from '../../core/errorHandler';
 import * as http from 'http';
 
-describe('ErrorHandler', () => {
+describe('ErrorHandler Basic Functionality', () => {
     let errorHandler: ErrorHandler;
     let mockRequest: http.IncomingMessage;
     let mockResponse: http.ServerResponse;

@@ -1,22 +1,24 @@
-import { IncomingMessage, ServerResponse } from 'http';
+import * as http from 'http';
 import { MiddlewareManager, Middleware } from './middleware';
 
 interface Route {
     method: string;
     path: string;
-    handler: (req: IncomingMessage, res: ServerResponse) => void;
+    handler: (req: http.IncomingMessage, res: http.ServerResponse) => void;
     middlewares?: Middleware[];
 }
 
 export class Router {
     private routes: Route[] = [];
     private middlewareManager: MiddlewareManager;
+    private controllers: any[] = [];
 
     constructor(middlewareManager: MiddlewareManager) {
         this.middlewareManager = middlewareManager;
     }
 
     registerController(controller: any) {
+        this.controllers.push(controller);
         const prefix = Reflect.getMetadata('prefix', controller.constructor) || '';
         const routes = Reflect.getMetadata('routes', controller.constructor) || [];
 
@@ -24,13 +26,17 @@ export class Router {
             const fullPath = prefix + route.path;
             this.routes.push({
                 ...route,
-                fullPath,
+                path: fullPath,
                 handler: controller[route.handlerName].bind(controller)
             });
         });
     }
 
-    handle(req: IncomingMessage, res: ServerResponse, errorHandler: (err: any, req: IncomingMessage, res: ServerResponse) => void) {
+    getControllers() {
+        return this.controllers;
+    }
+
+    handle(req: http.IncomingMessage, res: http.ServerResponse, errorHandler: (err: any, req: http.IncomingMessage, res: http.ServerResponse) => void) {
         const { method, url } = req;
         const route = this.routes.find(r => r.method === method?.toLowerCase() && r.path === url);
 
@@ -39,7 +45,11 @@ export class Router {
                 if (err) {
                     errorHandler(err, req, res);
                 } else {
-                    route.handler(req, res);
+                    try {
+                        route.handler(req, res);
+                    } catch (error) {
+                        errorHandler(error, req, res);
+                    }
                 }
             });
         } else {

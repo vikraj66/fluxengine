@@ -1,10 +1,11 @@
 import 'reflect-metadata';
-import { Router } from '../core/router';
-import { MiddlewareManager } from '../core/middleware';
-import { ErrorHandler } from '../core/errorHandler';
+import { Controller, Route } from '../../core/controller';
+import { Router } from '../../core/router';
+import { MiddlewareManager } from '../../core/middleware';
+import { ErrorHandler } from '../../core/errorHandler';
 import * as http from 'http';
 
-describe('Router', () => {
+describe('Controller Routes', () => {
     let router: Router;
     let middlewareManager: MiddlewareManager;
     let errorHandler: ErrorHandler;
@@ -23,10 +24,9 @@ describe('Router', () => {
     });
 
     it('should handle requests with registered routes', () => {
-        @Reflect.metadata('routes', [
-            { method: 'get', path: '/test', handlerName: 'testMethod' }
-        ])
+        @Controller('/test')
         class TestController {
+            @Route('get', '/route')
             testMethod(req: http.IncomingMessage, res: http.ServerResponse) {
                 res.statusCode = 200;
                 res.end('Test');
@@ -36,7 +36,7 @@ describe('Router', () => {
         router.registerController(new TestController());
 
         mockRequest.method = 'GET';
-        mockRequest.url = '/test';
+        mockRequest.url = '/test/route';
 
         router.handle(mockRequest, mockResponse, errorHandler.handleError.bind(errorHandler));
 

@@ -1,7 +1,7 @@
 import 'reflect-metadata';
-import { Controller, Route } from '../core/controller';
+import { Controller, Route } from '../../core/controller';
 
-describe('Controller Decorator', () => {
+describe('Controller Basic Functionality', () => {
     it('should add prefix metadata to the controller', () => {
         @Controller('/test')
         class TestController {}
@@ -9,9 +9,7 @@ describe('Controller Decorator', () => {
         const prefix = Reflect.getMetadata('prefix', TestController);
         expect(prefix).toBe('/test');
     });
-});
 
-describe('Route Decorator', () => {
     it('should add route metadata to the controller', () => {
         class TestController {
             @Route('get', '/test')

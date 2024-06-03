@@ -1,6 +1,6 @@
-import { Logger } from '../core/logger';
+import { Logger } from '../../core/logger';
 
-describe('Logger', () => {
+describe('Logger Basic Functionality', () => {
     let logger: Logger;
 
     beforeEach(() => {
