@@ -7,11 +7,11 @@ const middleware_1 = require("./middleware");
 const errorHandler_1 = require("./errorHandler");
 const logger_1 = require("./logger");
 class App {
-    constructor() {
-        this.middlewareManager = new middleware_1.MiddlewareManager();
-        this.router = new router_1.Router(this.middlewareManager);
-        this.errorHandler = new errorHandler_1.ErrorHandler();
-        this.logger = new logger_1.Logger();
+    constructor(options = {}) {
+        this.middlewareManager = options.middlewareManager || new middleware_1.MiddlewareManager();
+        this.router = options.router || new router_1.Router(this.middlewareManager);
+        this.errorHandler = options.errorHandler || new errorHandler_1.ErrorHandler();
+        this.logger = options.logger || new logger_1.Logger();
         this.server = new server_1.Server(this.router, this.errorHandler, this.logger);
     }
     use(middleware) {

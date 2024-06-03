@@ -1,4 +1,3 @@
-export interface ControllerInterface {
+export interface Controller {
     prefix: string;
-  }
-  
+}

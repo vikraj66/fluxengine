@@ -1,14 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.utils = exports.constants = exports.config = exports.Logger = exports.Event = exports.eventEmitter = exports.Route = exports.Controller = exports.App = void 0;
+exports.utils = exports.constants = exports.config = exports.Logger = exports.CustomEventEmitter = exports.Route = exports.Controller = exports.App = void 0;
 var app_1 = require("./core/app");
 Object.defineProperty(exports, "App", { enumerable: true, get: function () { return app_1.App; } });
 var controller_1 = require("./core/controller");
 Object.defineProperty(exports, "Controller", { enumerable: true, get: function () { return controller_1.Controller; } });
 Object.defineProperty(exports, "Route", { enumerable: true, get: function () { return controller_1.Route; } });
 var eventEmitter_1 = require("./core/eventEmitter");
-Object.defineProperty(exports, "eventEmitter", { enumerable: true, get: function () { return eventEmitter_1.eventEmitter; } });
-Object.defineProperty(exports, "Event", { enumerable: true, get: function () { return eventEmitter_1.Event; } });
+Object.defineProperty(exports, "CustomEventEmitter", { enumerable: true, get: function () { return eventEmitter_1.CustomEventEmitter; } });
 var logger_1 = require("./utils/logger");
 Object.defineProperty(exports, "Logger", { enumerable: true, get: function () { return logger_1.Logger; } });
 var config_1 = require("./utils/config");

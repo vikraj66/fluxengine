@@ -1,10 +1,15 @@
-import * as http from 'http';
-import 'reflect-metadata';
-import { RouteDefinition } from '../types';
-import { Middleware, MiddlewareManager } from './middleware';
+import { IncomingMessage, ServerResponse } from 'http';
+import { MiddlewareManager, Middleware } from './middleware';
+
+interface Route {
+    method: string;
+    path: string;
+    handler: (req: IncomingMessage, res: ServerResponse) => void;
+    middlewares?: Middleware[];
+}
 
 export class Router {
-    private routes: RouteDefinition[] = [];
+    private routes: Route[] = [];
     private middlewareManager: MiddlewareManager;
 
     constructor(middlewareManager: MiddlewareManager) {
@@ -12,33 +17,29 @@ export class Router {
     }
 
     registerController(controller: any) {
-        const instance = new controller();
-        const prefix = Reflect.getMetadata('prefix', controller);
-        const routes = Reflect.getMetadata('routes', controller) as RouteDefinition[];
+        const prefix = Reflect.getMetadata('prefix', controller.constructor) || '';
+        const routes = Reflect.getMetadata('routes', controller.constructor) || [];
 
-        routes.forEach(route => {
+        routes.forEach((route: any) => {
             const fullPath = prefix + route.path;
             this.routes.push({
                 ...route,
-                handler: instance[route.handlerName].bind(instance),
                 fullPath,
-                middlewares: route.middlewares || []
+                handler: controller[route.handlerName].bind(controller)
             });
         });
     }
 
-    handle(req: http.IncomingMessage, res: http.ServerResponse, errorHandler: (err: any, req: http.IncomingMessage, res: http.ServerResponse) => void) {
+    handle(req: IncomingMessage, res: ServerResponse, errorHandler: (err: any, req: IncomingMessage, res: ServerResponse) => void) {
         const { method, url } = req;
-        const route = this.routes.find(r => r.method === method?.toLowerCase() && r.fullPath === url);
+        const route = this.routes.find(r => r.method === method?.toLowerCase() && r.path === url);
 
         if (route) {
-            this.middlewareManager.executeMiddlewares(req, res, route.middlewares as Middleware[] || [], (err?: any) => {
+            this.middlewareManager.executeMiddlewares(req, res, route.middlewares || [], (err?: any) => {
                 if (err) {
                     errorHandler(err, req, res);
                 } else {
-                    if (typeof route.handler === 'function') {
-                        route.handler(req, res);
-                    }
+                    route.handler(req, res);
                 }
             });
         } else {
