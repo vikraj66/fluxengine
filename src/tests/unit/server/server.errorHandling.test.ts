@@ -1,9 +1,9 @@
 import 'reflect-metadata';
-import { Server } from '../../core/server';
-import { Router } from '../../core/router';
-import { ErrorHandler } from '../../core/errorHandler';
-import { Logger } from '../../core/logger';
-import { MiddlewareManager } from '../../core/middleware';
+import { Server } from '../../../core/server';
+import { Router } from '../../../core/router';
+import { ErrorHandler } from '../../../core/errorHandler';
+import { Logger } from '../../../core/logger';
+import { MiddlewareManager } from '../../../core/middleware';
 import * as http from 'http';
 
 describe('Server Error Handling', () => {

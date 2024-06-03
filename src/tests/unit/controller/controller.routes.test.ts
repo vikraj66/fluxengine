@@ -1,8 +1,8 @@
 import 'reflect-metadata';
-import { Controller, Route } from '../../core/controller';
-import { Router } from '../../core/router';
-import { MiddlewareManager } from '../../core/middleware';
-import { ErrorHandler } from '../../core/errorHandler';
+import { Controller, Route } from '../../../core/controller';
+import { Router } from '../../../core/router';
+import { MiddlewareManager } from '../../../core/middleware';
+import { ErrorHandler } from '../../../core/errorHandler';
 import * as http from 'http';
 
 describe('Controller Routes', () => {

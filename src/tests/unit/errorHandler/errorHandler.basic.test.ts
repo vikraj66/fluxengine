@@ -1,4 +1,4 @@
-import { ErrorHandler } from '../../core/errorHandler';
+import { ErrorHandler } from '../../../core/errorHandler';
 import * as http from 'http';
 
 describe('ErrorHandler Basic Functionality', () => {

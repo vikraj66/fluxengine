@@ -1,7 +1,7 @@
 import 'reflect-metadata';  // Ensure this import is present
-import { Router } from '../../core/router';
-import { MiddlewareManager, Middleware } from '../../core/middleware';
-import { ErrorHandler } from '../../core/errorHandler';
+import { Router } from '../../../core/router';
+import { MiddlewareManager, Middleware } from '../../../core/middleware';
+import { ErrorHandler } from '../../../core/errorHandler';
 import * as http from 'http';
 
 describe('Router with Middleware', () => {

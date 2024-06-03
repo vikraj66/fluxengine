@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Controller, Route } from '../../core/controller';
+import { Controller, Route } from '../../../core/controller';
 
 describe('Controller Basic Functionality', () => {
     it('should add prefix metadata to the controller', () => {

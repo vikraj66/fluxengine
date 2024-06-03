@@ -1,5 +1,5 @@
-import { CustomEventEmitter } from '../../core/eventEmitter';
 
+import { CustomEventEmitter } from '../../../core/eventEmitter'
 describe('CustomEventEmitter Basic Functionality', () => {
     let eventEmitter: CustomEventEmitter;
 

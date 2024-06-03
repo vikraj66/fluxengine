@@ -1,9 +1,9 @@
 import 'reflect-metadata';  // Ensure this import is present
-import { App } from '../../core/app';
-import { Logger } from '../../core/logger';
-import { MiddlewareManager } from '../../core/middleware';
-import { Router } from '../../core/router';
-import { ErrorHandler } from '../../core/errorHandler';
+import { App } from '../../../core/app';
+import { Logger } from '../../../core/logger';
+import { MiddlewareManager } from '../../../core/middleware';
+import { Router } from '../../../core/router';
+import { ErrorHandler } from '../../../core/errorHandler';
 
 describe('App Basic Functionality', () => {
     let app: App;

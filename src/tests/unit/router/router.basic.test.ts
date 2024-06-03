@@ -1,7 +1,7 @@
 import 'reflect-metadata';
-import { Router } from '../../core/router';
-import { MiddlewareManager } from '../../core/middleware';
-import { ErrorHandler } from '../../core/errorHandler';
+import { Router } from '../../../core/router';
+import { MiddlewareManager } from '../../../core/middleware';
+import { ErrorHandler } from '../../../core/errorHandler';
 import * as http from 'http';
 
 describe('Router Basic Functionality', () => {

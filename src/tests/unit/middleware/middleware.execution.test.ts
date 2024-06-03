@@ -1,4 +1,4 @@
-import { MiddlewareManager, Middleware } from '../../core/middleware';
+import { MiddlewareManager, Middleware } from '../../../core/middleware';
 import * as http from 'http';
 
 describe('Middleware Execution', () => {

@@ -1,5 +1,5 @@
-import { App } from '../../core/app';
-import { ErrorHandler } from '../../core/errorHandler';
+import { App } from '../../../core/app';
+import { ErrorHandler } from '../../../core/errorHandler';
 
 describe('App Error Handling', () => {
     let app: App;
