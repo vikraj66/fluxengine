@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "fluxengine",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "ts-node examples/blogApp/app.ts",
