@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "@node/flux",
+  "name": "liti",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
