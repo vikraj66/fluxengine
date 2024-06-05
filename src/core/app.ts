@@ -40,6 +40,11 @@ export class App {
     }
 
     listen(port: number, callback: () => void) {
+        console.log("server started at port 3000")
         this.server.listen(port, callback);
+    }
+
+    close(callback?: (err?: Error) => void) {
+        this.server['server'].close(callback);
     }
 }

@@ -11,7 +11,11 @@ export function Controller(prefix: string): ClassDecorator {
 
 export function Route(method: 'get' | 'post' | 'delete' | 'put', path: string, event?: string, middlewares: Function[] = []): MethodDecorator {
     return (target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor): void => {
-        const routes = Reflect.getMetadata('routes', target.constructor) as any[] || [];
+        if (!Reflect.hasMetadata('routes', target.constructor)) {
+            Reflect.defineMetadata('routes', [], target.constructor);
+        }
+
+        const routes = Reflect.getMetadata('routes', target.constructor) as any[];
         routes.push({
             method,
             path,
@@ -19,6 +23,7 @@ export function Route(method: 'get' | 'post' | 'delete' | 'put', path: string, e
             event,
             middlewares
         });
+
         Reflect.defineMetadata('routes', routes, target.constructor);
     };
 }

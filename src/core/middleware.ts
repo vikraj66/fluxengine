@@ -1,32 +1,33 @@
 import { IncomingMessage, ServerResponse } from 'http';
 
-export type Middleware = (req: IncomingMessage, res: ServerResponse, next: Function) => void;
+export interface Middleware {
+    (req: IncomingMessage, res: ServerResponse, next: (err?: any) => void): void;
+}
 
 export class MiddlewareManager {
-  private globalMiddlewares: Middleware[] = [];
+    private middlewares: Middleware[] = [];
 
-  use(middleware: Middleware) {
-    this.globalMiddlewares.push(middleware);
-  }
+    use(middleware: Middleware) {
+        this.middlewares.push(middleware);
+    }
 
-  executeMiddlewares(req: IncomingMessage, res: ServerResponse, middlewares: Middleware[], callback: Function) {
-    const stack = [...this.globalMiddlewares, ...middlewares];
-    let index = 0;
+    executeMiddlewares(req: IncomingMessage, res: ServerResponse, middlewares: Middleware[], callback: (err?: any) => void) {
+        const stack = middlewares.concat(this.middlewares);
 
-    const next = (err?: any) => {
-      if (err) {
-        return callback(err);
-      }
+        const next = (err?: any) => {
+            if (err) {
+                callback(err);
+                return;
+            }
 
-      if (index < stack.length) {
-        const middleware = stack[index];
-        index++;
-        middleware(req, res, next);
-      } else {
-        callback();
-      }
-    };
+            const middleware = stack.shift();
+            if (middleware) {
+                middleware(req, res, next);
+            } else {
+                callback();
+            }
+        };
 
-    next();
-  }
+        next();
+    }
 }
