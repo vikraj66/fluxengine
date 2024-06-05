@@ -1,6 +1,9 @@
-# fluxengine
+Here is the updated `README.md` content with minimal changes, updated package name, and correct imports:
 
-`fluxengine` is a TypeScript-based framework designed to simplify building server-side applications. It provides a structured and modular approach with core functionalities like routing, middleware management, error handling, and logging.
+```markdown
+# wayofnode
+
+`wayofnode` is a TypeScript-based framework designed to simplify building server-side applications. It provides a structured and modular approach with core functionalities like routing, middleware management, error handling, and logging.
 
 ## Features
 - **Modular Architecture**: Separate components for server, routing, middleware, and controllers.
@@ -24,21 +27,21 @@ Before you begin, ensure you have the following installed on your machine:
 1. **Initialize Your Project**
 
     ```bash
-    mkdir my-fluxengine-app
-    cd my-fluxengine-app
+    mkdir my-wayofnode-app
+    cd my-wayofnode-app
     npm init -y
     ```
 
 2. **Install Dependencies**
 
     ```bash
-    npm install fluxengine reflect-metadata
+    npm install wayofnode reflect-metadata
     ```
 
     If you prefer to use Yarn, you can run:
 
     ```bash
-    yarn add fluxengine reflect-metadata
+    yarn add wayofnode reflect-metadata
     ```
 
 3. **Set Up TypeScript**
@@ -81,7 +84,7 @@ Before you begin, ensure you have the following installed on your machine:
     - Create `app.ts` in `src/core/`
 
         ```typescript
-        import { App } from 'fluxengine';
+        import { App } from 'wayofnode';
         import { UserController } from '../controllers/userController';
         import { AuthMiddleware } from '../middleware/authMiddleware';
 
@@ -102,7 +105,7 @@ Before you begin, ensure you have the following installed on your machine:
     - Create `userController.ts` in `src/controllers/`
 
         ```typescript
-        import { Controller, Route } from 'fluxengine';
+        import { Controller, Route } from 'wayofnode';
 
         @Controller('/users')
         export class UserController {
@@ -123,7 +126,7 @@ Before you begin, ensure you have the following installed on your machine:
     - Create `authMiddleware.ts` in `src/middleware/`
 
         ```typescript
-        import { Middleware } from 'fluxengine';
+        import { Middleware } from 'wayofnode';
 
         export const AuthMiddleware: Middleware = (req, res, next) => {
             if (req.headers.authorization === 'valid-token') {
@@ -226,7 +229,7 @@ Refer to the "Create Core Files" section above for setting up a basic server wit
 Create a file named `errorHandler.ts` in your `core` directory.
 
 ```typescript
-import * as http from 'http';
+import * as http from 'wayofnode';
 
 export class CustomErrorHandler {
     private handler: (err: any, req: http.IncomingMessage, res: http.ServerResponse) => void | Promise<void>;
@@ -278,7 +281,7 @@ export class CustomLogger {
 Update your `app.ts` to use the custom logger.
 
 ```typescript
-import { App } from 'fluxengine';
+import { App } from 'wayofnode';
 import { UserController } from '../controllers/userController';
 import { AuthMiddleware } from '../middleware/authMiddleware';
 import { CustomLogger } from '../utils/customLogger';
@@ -316,7 +319,7 @@ export const config = {
 Update your `app.ts` to use the configuration.
 
 ```typescript
-import { App } from 'fluxengine';
+import { App } from 'wayofnode';
 import { UserController } from '../controllers/userController';
 import { AuthMiddleware } from '../middleware/authMiddleware';
 import { config } from '../utils/config';
@@ -352,17 +355,17 @@ export const utils = {
 Update your `userController.ts` to use utility functions.
 
 ```typescript
-import { Controller, Route } from 'fluxengine';
-import { utils } from '../utils/utils';
+import { Controller, Route } from 'wayofnode';
+import { utils } from '../utils/utils
+
+';
 
 @Controller('/users')
 export class UserController {
 
     @Route('get', '/')
     getAllUsers(req: any, res: any) {
-        res.send([{ id
-
-: utils.generateId(), name: 'John Doe' }]);
+        res.send([{ id: utils.generateId(), name: 'John Doe' }]);
     }
 
     @Route('get', '/:id')
@@ -380,7 +383,7 @@ export class UserController {
 Create a file named `loggingMiddleware.ts` in your `middleware` directory.
 
 ```typescript
-import { Middleware } from 'fluxengine';
+import { Middleware } from 'wayofnode';
 
 export const LoggingMiddleware: Middleware = (req, res, next) => {
     console.log(`${req.method} ${req.url}`);
@@ -393,7 +396,7 @@ export const LoggingMiddleware: Middleware = (req, res, next) => {
 Update your `app.ts` to use multiple middleware functions.
 
 ```typescript
-import { App } from 'fluxengine';
+import { App } from 'wayofnode';
 import { UserController } from '../controllers/userController';
 import { AuthMiddleware } from '../middleware/authMiddleware';
 import { LoggingMiddleware } from '../middleware/loggingMiddleware';
@@ -420,7 +423,7 @@ app.listen(3000, () => {
 Update your `userController.ts` to handle route parameters.
 
 ```typescript
-import { Controller, Route } from 'fluxengine';
+import { Controller, Route } from 'wayofnode';
 
 @Controller('/users')
 export class UserController {
@@ -445,7 +448,7 @@ export class UserController {
 Update your `userController.ts` to handle query parameters.
 
 ```typescript
-import { Controller, Route } from 'fluxengine';
+import { Controller, Route } from 'wayofnode';
 
 @Controller('/users')
 export class UserController {
@@ -475,7 +478,7 @@ export class UserController {
 Update your `userController.ts` to handle POST requests.
 
 ```typescript
-import { Controller, Route } from 'fluxengine';
+import { Controller, Route } from 'wayofnode';
 
 @Controller('/users')
 export class UserController {
@@ -506,7 +509,7 @@ export class UserController {
 Update your `userController.ts` to apply middleware to specific routes.
 
 ```typescript
-import { Controller, Route } from 'fluxengine';
+import { Controller, Route } from 'wayofnode';
 import { AuthMiddleware } from '../middleware/authMiddleware';
 
 @Controller('/users')
@@ -532,7 +535,7 @@ export class UserController {
 Create a file named `customMiddleware.ts` in your `middleware` directory.
 
 ```typescript
-import { Middleware } from 'fluxengine';
+import { Middleware } from 'wayofnode';
 
 export const CustomMiddleware: Middleware = (req, res, next) => {
     if (req.query.token === 'secret') {
@@ -550,7 +553,7 @@ export const CustomMiddleware: Middleware = (req, res, next) => {
 Update your `userController.ts` to handle nested routes.
 
 ```typescript
-import { Controller, Route } from 'fluxengine';
+import { Controller, Route } from 'wayofnode';
 
 @Controller('/users')
 export class UserController {
@@ -581,7 +584,7 @@ export class UserController {
 Create a file named `staticMiddleware.ts` in your `middleware` directory.
 
 ```typescript
-import { Middleware } from 'fluxengine';
+import { Middleware } from 'wayofnode';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -603,7 +606,7 @@ export const StaticMiddleware: Middleware = (req, res, next) => {
 Update your `app.ts` to use static file serving.
 
 ```typescript
-import { App } from 'fluxengine';
+import { App } from 'wayofnode';
 import { UserController } from '../controllers/userController';
 import { AuthMiddleware } from '../middleware/authMiddleware';
 import { StaticMiddleware } from '../middleware/staticMiddleware';
@@ -630,7 +633,7 @@ app.listen(3000, () => {
 Update your `authMiddleware.ts` to include error handling.
 
 ```typescript
-import { Middleware } from 'fluxengine';
+import { Middleware } from 'wayofnode';
 
 export const AuthMiddleware: Middleware = (req, res, next) => {
     try {
@@ -652,7 +655,7 @@ export const AuthMiddleware: Middleware = (req, res, next) => {
 Update your `app.ts` to combine all the features.
 
 ```typescript
-import { App } from 'fluxengine';
+import { App } from 'wayofnode';
 import { UserController } from '../controllers/userController';
 import { AuthMiddleware } from '../middleware/authMiddleware';
 import { StaticMiddleware } from '../middleware/staticMiddleware';
@@ -680,11 +683,11 @@ app.listen(3000, () => {
 ## Explanation
 
 1. **Controllers**:
-   - Controllers in `fluxengine` are classes decorated with the `@Controller` decorator, which takes a prefix for the routes.
+   - Controllers in `wayofnode` are classes decorated with the `@Controller` decorator, which takes a prefix for the routes.
    - Each method in the controller can be decorated with the `@Route` decorator to define the HTTP method and path.
 
 2. **Middleware**:
-   - Middleware functions in `fluxengine` follow the `(req, res, next)` signature and can be added globally using the `app.use` method.
+   - Middleware functions in `wayofnode` follow the `(req, res, next)` signature and can be added globally using the `app.use` method.
    - Middleware can also be applied to specific routes using the `@Route` decorator.
 
 3. **Error Handling**:
@@ -699,14 +702,13 @@ app.listen(3000, () => {
    - The `config` object stores configuration settings such as the server port.
    - Configuration settings can be easily accessed throughout the application.
 
-6. **Utility Functions**:
+
+Utility Functions**:
    - The `utils` object provides general utility functions that can be used throughout the application.
    - Example utility function includes generating a random ID.
 
 7. **Advanced Middleware**:
-   - Middleware can include advanced logic such as
-
- logging requests or checking for query parameters.
+   - Middleware can include advanced logic such as logging requests or checking for query parameters.
    - Middleware can be applied globally or to specific routes.
 
 8. **Routing**:
@@ -715,16 +717,8 @@ app.listen(3000, () => {
 
 9. **Static File Serving**:
    - The `StaticMiddleware` middleware can be used to serve static files from a directory.
-   - Static file serving is handled directly within `fluxengine` without the need for external frameworks.
+   - Static file serving is handled directly within `wayofnode` without the need for external frameworks.
 
 10. **Comprehensive App**:
-    - The comprehensive app example combines all the features of `fluxengine` to create a robust server-side application.
+    - The comprehensive app example combines all the features of `wayofnode` to create a robust server-side application.
     - The app uses custom error handling, logging, middleware, controllers, and configuration to provide a complete solution.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License.
