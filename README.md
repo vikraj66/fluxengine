@@ -1,6 +1,6 @@
 Here is the updated `README.md` content with minimal changes, updated package name, and correct imports:
 
-```markdown
+
 # wayofnode
 
 `wayofnode` is a TypeScript-based framework designed to simplify building server-side applications. It provides a structured and modular approach with core functionalities like routing, middleware management, error handling, and logging.
