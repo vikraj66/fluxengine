@@ -20,7 +20,8 @@
   "exclude": [
     "node_modules",
     "examples",
-    "tests"
+    "tests",
+    "src/tests"
   ],
   "include": [
     "src/**/*.ts"
