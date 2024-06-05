@@ -1,6 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import TerserPlugin from 'terser-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -8,8 +9,10 @@ const __dirname = path.dirname(__filename);
 export default {
     entry: './src/index.ts',
     output: {
-        filename: 'bundle.js',
+        filename: 'index.js',
         path: path.resolve(__dirname, 'dist'),
+        libraryTarget: 'umd',
+        globalObject: 'this',
     },
     resolve: {
         extensions: ['.ts', '.js'],
@@ -28,6 +31,9 @@ export default {
             },
         ],
     },
+    plugins: [
+        new CleanWebpackPlugin()
+    ],
     optimization: {
         minimize: true,
         minimizer: [new TerserPlugin({

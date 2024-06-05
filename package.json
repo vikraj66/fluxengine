@@ -1,15 +1,19 @@
 {
+  "name": "wayofnode",
+  "version": "1.0.5",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
-  "name": "wayofthenode",
-  "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "start": "ts-node examples/blogApp/app.ts",
-    "build": "webpack --mode production",
+    "clean": "rimraf dist",
+    "build": "npm run clean && webpack --mode production && npm run bundle-dts && npm run postbuild",
+    "bundle-dts": "dts-bundle-generator --o dist/index.d.ts src/index.ts",
+    "postbuild": "npm run cleanup",
+    "cleanup": "rimraf dist/core dist/interfaces dist/tests dist/utils dist/types.d.ts",
     "test": "jest --detectOpenHandles",
     "prepare": "husky install",
-    "lint": "eslint || true",
-    "prepack": "npmignore --auto"
+    "lint": "eslint || true"
   },
   "dependencies": {
     "buffer": "^6.0.3",
@@ -24,11 +28,15 @@
     "@types/node": "^20.14.0",
     "@typescript-eslint/eslint-plugin": "^7.12.0",
     "@typescript-eslint/parser": "^7.12.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "dts-bundle": "^0.7.3",
+    "dts-bundle-generator": "^9.5.1",
     "eslint": "^8.57.0",
     "globals": "^15.3.0",
     "husky": "^9.0.11",
     "jest": "^29.7.0",
     "npmignore": "^0.3.1",
+    "rimraf": "^5.0.7",
     "terser-webpack-plugin": "^5.3.10",
     "ts-jest": "^29.1.4",
     "ts-loader": "^9.5.1",
@@ -37,9 +45,5 @@
     "typescript-eslint": "^7.12.0",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
-  },
-  "keywords": ["node.js", "framework", "musashi", "samurai", "vagabond", "typescript", "eslint", "jest", "webpack"],
-  "author": "Miyamoto musashi",
-  "license": "ISC",
-  "description": "A Node.js framework inspired by the legendary samurai Miyamoto Musashi."
+  }
 }
