@@ -1,1 +1,45 @@
+# ignore node_modules
 node_modules/
+
+# ignore build artifacts
+dist/
+
+# ignore logs and temporary files
+*.log
+*.swp
+*.tmp
+*.bak
+*.pyc
+*.class
+*.lck
+*.tmp
+*.temp
+*.tmp_lock
+*.tmp_pid
+*.pid
+*.swo
+*.crash
+*.core
+*.sock
+*.lock
+*.db-shm
+*.db-wal
+*.sqlite*
+*.log.*
+tmp/
+log/
+
+# ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# ignore editor configuration files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# ignore development dependencies
+package-lock.json
+.npmignore
