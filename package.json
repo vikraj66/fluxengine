@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "nodeflux",
+  "name": "@node/flux",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
