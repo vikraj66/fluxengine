@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "name": "fluxengine",
+  "name": "wayofthenode",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -37,5 +37,9 @@
     "typescript-eslint": "^7.12.0",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
-  }
+  },
+  "keywords": ["node.js", "framework", "musashi", "samurai", "vagabond", "typescript", "eslint", "jest", "webpack"],
+  "author": "Miyamoto musashi",
+  "license": "ISC",
+  "description": "A Node.js framework inspired by the legendary samurai Miyamoto Musashi."
 }
