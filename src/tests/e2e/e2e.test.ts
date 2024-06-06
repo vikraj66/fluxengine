@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+// @ts-ignore
 import { App } from '@/core/app';
 import * as http from 'http';
 import { UserController } from './setup/controllers/userController';

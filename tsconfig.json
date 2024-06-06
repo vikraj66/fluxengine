@@ -16,7 +16,13 @@
     "paths": {
       "@/*": ["*"]
     },
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "plugins": [
+      {
+        "transform": "ts-transform-paths",
+        "afterDeclarations": true
+      }
+    ]
   },
   "exclude": [
     "node_modules",
