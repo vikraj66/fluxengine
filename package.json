@@ -1,18 +1,19 @@
 {
   "name": "wayofnode",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "start": "ts-node examples/blogApp/app.ts",
     "clean": "rimraf dist",
-    "build": "npm run clean && webpack --mode production && npm run bundle-dts && npm run postbuild",
+    "build:webpack": "npm run clean && webpack --mode production && npm run bundle-dts && npm run postbuild",
     "bundle-dts": "dts-bundle-generator --o dist/index.d.ts src/index.ts",
-    "postbuild": "npm run cleanup",
+    "postbuild:cleanup": "npm run cleanup",
     "cleanup": "rimraf dist/core dist/interfaces dist/tests dist/utils dist/types.d.ts",
     "test": "jest --detectOpenHandles",
     "prepare": "husky install",
+    "build":"npm run clean && tsc",
     "lint": "eslint || true"
   },
   "dependencies": {
