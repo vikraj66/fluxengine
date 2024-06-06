@@ -8,7 +8,7 @@ import { LoggingMiddleware } from './setup/middleware/loggingMiddleware';
 
 describe('E2E Test Suite', () => {
     let app: App;
-
+ 
     beforeAll((done) => {
         app = new App();
         app.use(LoggingMiddleware);
