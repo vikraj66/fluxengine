@@ -7,15 +7,16 @@
   "scripts": {
     "start": "ts-node examples/blogApp/app.ts",
     "clean": "rimraf dist",
-    "build": "npm run clean && npm run build:esm && npm run build:cjs && npm run bundle-dts && npm run postbuild",
+    "build:webpack": "npm run clean && npm run build:esm && npm run build:cjs && npm run bundle-dts && npm run postbuild",
     "build:esm": "webpack --config webpack.esm.config.js --mode production",
     "build:cjs": "webpack --config webpack.cjs.config.js --mode production",
     "bundle-dts": "dts-bundle-generator --o dist/index.d.ts src/index.ts",
-    "postbuild": "npm run cleanup",
+    "postbuild:webpack": "npm run cleanup",
     "cleanup": "rimraf dist/core dist/interfaces dist/tests dist/utils dist/types.d.ts",
     "test": "jest --detectOpenHandles",
     "prepare": "husky install",
-    "lint": "eslint || true"
+    "lint": "eslint || true",
+    "build": "npm run clean && tsc"
   },
   "dependencies": {
     "buffer": "^6.0.3",
