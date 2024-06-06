@@ -1,6 +1,6 @@
 {
-  "name": "wayofthenode",
-  "version": "1.0.0",
+  "name": "wayofnode",
+  "version": "1.0.12",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
