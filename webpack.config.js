@@ -1,53 +1,44 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import TerserPlugin from 'terser-webpack-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import { dirname } from 'path';
 
+// Needed for resolving __dirname in ES module scope
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
 export default {
-    entry: './src/index.ts',
-    output: {
-        filename: 'index.js',
-        path: path.resolve(__dirname, 'dist'),
-        libraryTarget: 'umd',
-        globalObject: 'this',
-    },
-    resolve: {
-        extensions: ['.ts', '.js'],
-        fallback: {
-            "http": 'stream-http',
-            "buffer": 'buffer',
-            "url": 'url'
-        }
-    },
-    module: {
-        rules: [
-            {
-                test: /\.ts$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-            },
-        ],
-    },
-    plugins: [
-        new CleanWebpackPlugin()
+  entry: './dist/index.js',
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
-    optimization: {
-        minimize: true,
-        minimizer: [new TerserPlugin({
-            terserOptions: {
-                compress: {
-                    drop_console: true,
-                },
-                output: {
-                    comments: false,
-                },
-                mangle: {
-                    toplevel: true,
-                },
-            },
-        })],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+    fallback: {
+      "http": "stream-http",
+      "https": "https-browserify",
+      "url": "url",
+      "buffer": "buffer",
+      "stream": "stream-browserify",
+      "assert": "assert",
+      "crypto": "crypto-browserify"
     },
+  },
+  output: {
+    filename: 'index.js',
+    path: path.resolve(__dirname, 'dist/minified'),
+    libraryTarget: 'module'
+  },
+  experiments: {
+    outputModule: true,
+  },
+  optimization: {
+    minimize: true,
+  },
+  mode: 'production' // Setting mode to production to avoid warnings
 };

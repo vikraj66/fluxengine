@@ -1,11 +1,24 @@
 import gulp from 'gulp';
 import ts from 'gulp-typescript';
-import uglify from 'gulp-uglify';
 import sourcemaps from 'gulp-sourcemaps';
-import filter from 'gulp-filter';
+import gulpWebpack from 'webpack-stream';
 import replace from 'replace-in-file';
+import webpack from 'webpack';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const tsProject = ts.createProject('tsconfig.json');
+
+// Needed for resolving __dirname in ES module scope
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Dynamic import for Webpack configuration
+const loadWebpackConfig = async () => {
+    const webpackConfig = await import('./webpack.config.js');
+    return webpackConfig.default || webpackConfig;
+};
 
 // Task to compile TypeScript files
 gulp.task('compile', () => {
@@ -44,17 +57,12 @@ gulp.task('replace-paths', (done) => {
         });
 });
 
-// Task to minify the JavaScript files
-gulp.task('minify', () => {
-    const jsFilter = filter(['**/*.js', '!**/*.d.ts'], { restore: true });
-
-    return gulp.src('dist/**/*.js')
-        .pipe(sourcemaps.init({ loadMaps: true }))  // Initialize sourcemaps
-        .pipe(jsFilter)
-        .pipe(uglify())  // Minify the JavaScript
-        .pipe(jsFilter.restore)
-        .pipe(sourcemaps.write('.'))  // Write sourcemaps
-        .pipe(gulp.dest('dist'));  // Output directory
+// Task to minify the JavaScript files using Webpack
+gulp.task('minify', async () => {
+    const webpackConfig = await loadWebpackConfig();
+    return gulp.src('dist/index.js')
+        .pipe(gulpWebpack(webpackConfig, webpack))
+        .pipe(gulp.dest('dist/minified'));
 });
 
 // Default task to run all the steps in sequence

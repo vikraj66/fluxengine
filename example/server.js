@@ -1,7 +1,6 @@
-import {App} from '../dist/index.js'
+import * as way from '../dist/index.js'
 
-const app = new App();
-
+const app = new way.App();
 app.listen(3000, () => {
-    console.log('Server started on port 3000');
+    console.log('server started at port 3000')
 })
