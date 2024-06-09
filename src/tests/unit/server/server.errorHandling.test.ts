@@ -47,7 +47,7 @@ describe('Server Error Handling', () => {
         mockRequest.method = 'GET';
         mockRequest.url = '/test';
 
-        server.listen(3000, () => {
+        server.listen(4000, () => {
             server['server'].emit('request', mockRequest, mockResponse);
 
             process.nextTick(() => {

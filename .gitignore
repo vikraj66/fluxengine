@@ -3,7 +3,8 @@ node_modules/
 
 # ignore build artifacts
 dist/
-
+example/
+src/server.ts
 # ignore logs and temporary files
 *.log
 *.swp

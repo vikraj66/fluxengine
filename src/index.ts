@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 export { App } from './core/app';
 export { Logger } from './core/logger';
-export { MiddlewareManager } from './core/middleware';
+export { MiddlewareManager, Middleware } from './core/middleware';
 export { Router } from './core/router';
 export { ErrorHandler } from './core/errorHandler';
 export { Controller, Route } from './core/controller';

@@ -13,7 +13,7 @@ interface AppOptions {
 }
 
 export class App {
-    private server: Server;
+    private _server: Server;
     private router: Router;
     private middlewareManager: MiddlewareManager;
     private errorHandler: ErrorHandler;
@@ -24,7 +24,7 @@ export class App {
         this.router = options.router || new Router(this.middlewareManager);
         this.errorHandler = options.errorHandler || new ErrorHandler();
         this.logger = options.logger || new Logger();
-        this.server = new Server(this.router, this.errorHandler, this.logger);
+        this._server = new Server(this.router, this.errorHandler, this.logger);
     }
 
     use(middleware: Middleware) {
@@ -41,10 +41,25 @@ export class App {
 
     listen(port: number, callback: () => void) {
         console.log("server started at port 3000")
-        this.server.listen(port, callback);
+        this._server.listen(port, callback);
     }
 
     close(callback?: (err?: Error) => void) {
-        this.server['server'].close(callback);
+        this._server.close(callback);
+    }
+
+    // Getter for server
+    get server(): Server {
+        return this._server;
+    }
+
+    // Setter for server
+    set server(server: Server) {
+        this._server = server;
+    }
+
+    // Method to set a custom request handler with CORS enabled
+    setRequestHandler(handler: (req: http.IncomingMessage, res: http.ServerResponse) => void) {
+        this._server.setRequestHandler(handler);
     }
 }
