@@ -1,6 +1,6 @@
 {
-  "name": "wayofnode",
-  "version": "4.0.0",
+  "name": "wayofthenode",
+  "version": "1.0.0",
   "main": "dist/bundle.cjs",
   "types": "dist/bundle.d.ts",
   "type": "module",

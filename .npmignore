@@ -32,6 +32,8 @@ npm-debug.log*
 
 # Ignore package-lock.json if you don't want to include it
 package-lock.json
+build.js
+fix-import.cjs
 
 
 # npmignore

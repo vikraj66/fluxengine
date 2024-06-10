@@ -19,7 +19,6 @@ build({
   external: ['node_modules/*'],
 }).catch(() => process.exit(1));
 
-// Generate a single .d.ts bundle
 const dtsBundle = generateDtsBundle([
   {
     filePath: 'src/index.ts',
