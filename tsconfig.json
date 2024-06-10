@@ -5,24 +5,18 @@
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "strict": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "declaration": true,
     "declarationMap": false,
-    "declarationDir": "./dist",
+    "declarationDir": "./dist/types",
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"]
     },
-    "moduleResolution": "node",
-    "plugins": [
-      {
-        "transform": "ts-transform-paths",
-        "afterDeclarations": true
-      }
-    ]
+    "moduleResolution": "node"
   },
   "exclude": [
     "node_modules",

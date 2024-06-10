@@ -1,8 +1,8 @@
 {
   "name": "wayofnode",
-  "version": "3.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "4.0.0",
+  "main": "dist/bundle.cjs",
+  "types": "dist/bundle.d.ts",
   "type": "module",
   "scripts": {
     "start": "ts-node examples/blogApp/app.ts",
@@ -16,7 +16,9 @@
     "test": "jest --detectOpenHandles",
     "prepare": "husky install",
     "lint": "eslint || true",
-    "build": "npm run clean && tsc && node fix-import.cjs"
+    "build:tsc": "npm run clean && tsc && node fix-import.cjs",
+    "prebuild": "npm run clean",
+    "build": "node build.js"
   },
   "dependencies": {
     "buffer": "^6.0.3",
@@ -26,14 +28,18 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.4.0",
+    "@parcel/transformer-typescript-tsc": "^2.12.0",
+    "@parcel/transformer-typescript-types": "^2.12.0",
     "@types/eslint__js": "^8.42.3",
+    "@types/events": "^3.0.3",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.14.0",
+    "@types/node": "^20.14.2",
     "@typescript-eslint/eslint-plugin": "^7.12.0",
     "@typescript-eslint/parser": "^7.12.0",
     "clean-webpack-plugin": "^4.0.0",
     "dts-bundle": "^0.7.3",
     "dts-bundle-generator": "^9.5.1",
+    "esbuild": "^0.21.5",
     "eslint": "^8.57.0",
     "globals": "^15.3.0",
     "gulp": "^5.0.0",
@@ -44,6 +50,7 @@
     "husky": "^9.0.11",
     "jest": "^29.7.0",
     "npmignore": "^0.3.1",
+    "parcel": "^2.12.0",
     "replace-in-file": "^7.2.0",
     "rimraf": "^5.0.7",
     "terser-webpack-plugin": "^5.3.10",
